@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snap AI - Anime Art & AI Filters</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container bg-dark">
+        <!-- Header -->
+        <header class="bg-dark border-b border-gray-800 sticky top-0 z-50">
+            <div class="px-4 py-3 flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <div class="bg-gradient-to-r from-purple-600 to-pink-500 w-10 h-10 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-camera-retro text-white text-xl"></i>
+                    </div>
+                    <h1 class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-400">
+                        Snap AI
+                    </h1>
+                </div>
+
+                <div class="flex items-center space-x-4">
+                    <button class="bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-700 hover:to-pink-600 text-white px-3 py-1.5 rounded-full text-sm font-medium transition-all">
+                        <i class="fas fa-crown mr-1"></i> Premium
+                    </button>
+                    <div class="w-9 h-9 rounded-full bg-gray-700 flex items-center justify-center">
+                        <i class="fas fa-user text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="px-4 py-5">
+            <!-- Hero Section -->
+            <section class="text-center mb-6">
+                <h1 class="text-2xl md:text-3xl font-bold mb-3">Transform Photos with AI Magic</h1>
+                <p class="text-gray-300 text-sm mb-5">
+                    Turn your photos into stunning anime art, artistic masterpieces, and more.
+                </p>
+
+                <div class="flex justify-center gap-3">
+                    <input type="file" id="imageUpload" accept="image/*" class="hidden">
+                    <label for="imageUpload" id="uploadBtn" class="bg-dark border border-gray-700 hover:bg-gray-800 text-white px-5 py-2.5 rounded-full font-medium flex items-center justify-center cursor-pointer">
+                        <i class="fas fa-images mr-2"></i> Upload Image
+                    </label>
+                </div>
+            </section>
+
+            <!-- Preview Section -->
+            <section class="mb-6">
+                <div class="space-y-5">
+                    <!-- Original Image -->
+                    <div class="bg-gray-900 rounded-xl p-4">
+                        <h2 class="text-lg font-semibold mb-3 flex items-center">
+                            <i class="fas fa-image mr-2 text-purple-400"></i> Original Image
+                        </h2>
+
+                        <div id="originalPreview" class="camera-preview aspect-square rounded-xl flex flex-col items-center justify-center">
+                            <div class="text-center mb-4">
+                                <i class="fas fa-cloud-upload-alt text-3xl text-gray-500 mb-3"></i>
+                                <p class="text-gray-400 text-sm">Upload an image or capture with camera</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Processed Image -->
+                    <div class="bg-gray-900 rounded-xl p-4">
+                        <h2 class="text-lg font-semibold mb-3 flex items-center">
+                            <i class="fas fa-magic mr-2 text-pink-400"></i> AI Processed Result
+                        </h2>
+
+                        <div id="resultPreview" class="aspect-square rounded-xl bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center">
+                            <div class="text-center">
+                                <i class="fas fa-spinner text-3xl text-gray-500 mb-3 processing-animation"></i>
+                                <p class="text-gray-400 text-sm">Select a filter to see results</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Filter Selection -->
+            <section class="mb-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-xl font-bold">AI Filters</h2>
+                    <div class="flex space-x-2 overflow-x-auto pb-1" style="max-width: 60%;">
+                        <button class="filter-tab px-3 py-1.5 rounded-full bg-gray-800 text-gray-300 hover:bg-gray-700 transition-colors tab-active text-xs whitespace-nowrap">
+                            All
+                        </button>
+                        <button class="filter-tab px-3 py-1.5 rounded-full bg-gray-800 text-gray-300 hover:bg-gray-700 transition-colors text-xs whitespace-nowrap">
+                            Anime
+                        </button>
+                        <button class="filter-tab px-3 py-1.5 rounded-full bg-gray-800 text-gray-300 hover:bg-gray-700 transition-colors text-xs whitespace-nowrap">
+                            Artistic
+                        </button>
+                        <button class="filter-tab px-3 py-1.5 rounded-full bg-gray-800 text-gray-300 hover:bg-gray-700 transition-colors text-xs whitespace-nowrap">
+                            Special
+                        </button>
+                    </div>
+                </div>
+
+                <div class="flex overflow-x-auto space-x-4 pb-3" style="scrollbar-width: none;">
+                    <!-- Filter Cards -->
+                    <div class="filter-card flex-shrink-0 w-28 bg-gray-800 rounded-xl p-3 flex flex-col items-center">
+                        <div class="w-14 h-14 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 mb-2 flex items-center justify-center">
+                            <i class="fas fa-dragon text-white text-lg"></i>
+                        </div>
+                        <h3 class="font-medium text-sm text-center">Anime Style</h3>
+                        <span class="text-xs text-gray-400 mt-1">Popular</span>
+                    </div>
+
+                    <div class="filter-card flex-shrink-0 w-28 bg-gray-800 rounded-xl p-3 flex flex-col items-center">
+                        <div class="w-14 h-14 rounded-full bg-gradient-to-br from-blue-500 to-cyan-500 mb-2 flex items-center justify-center">
+                            <i class="fas fa-palette text-white text-lg"></i>
+                        </div>
+                        <h3 class="font-medium text-sm text-center">Van Gogh</h3>
+                        <span class="text-xs text-gray-400 mt-1">Artistic</span>
+                    </div>
+
+                    <div class="filter-card flex-shrink-0 w-28 bg-gray-800 rounded-xl p-3 flex flex-col items-center">
+                        <div class="w-14 h-14 rounded-full bg-gradient-to-br from-amber-500 to-orange-500 mb-2 flex items-center justify-center">
+                            <i class="fas fa-theater-masks text-white text-lg"></i>
+                        </div>
+                        <h3 class="font-medium text-sm text-center">Cartoon</h3>
+                        <span class="text-xs text-gray-400 mt-1">Fun</span>
+                    </div>
+
+                    <div class="filter-card flex-shrink-0 w-28 bg-gray-800 rounded-xl p-3 flex flex-col items-center">
+                        <div class="w-14 h-14 rounded-full bg-gradient-to-br from-emerald-500 to-teal-500 mb-2 flex items-center justify-center">
+                            <i class="fas fa-mountain text-white text-lg"></i>
+                        </div>
+                        <h3 class="font-medium text-sm text-center">Landscape</h3>
+                        <span class="text-xs text-gray-400 mt-1">Nature</span>
+                    </div>
+
+                    <div class="filter-card flex-shrink-0 w-28 bg-gray-800 rounded-xl p-3 flex flex-col items-center relative">
+                        <div class="absolute top-1 right-1 bg-amber-500 text-xs px-1.5 py-0.5 rounded-full">Premium</div>
+                        <div class="w-14 h-14 rounded-full bg-gradient-to-br from-rose-500 to-red-500 mb-2 flex items-center justify-center">
+                            <i class="fas fa-crown text-white text-lg"></i>
+                        </div>
+                        <h3 class="font-medium text-sm text-center">Royal Portrait</h3>
+                        <span class="text-xs text-gray-400 mt-1">Exclusive</span>
+                    </div>
+
+                    <div class="filter-card flex-shrink-0 w-28 bg-gray-800 rounded-xl p-3 flex flex-col items-center">
+                        <div class="w-14 h-14 rounded-full bg-gradient-to-br from-violet-500 to-purple-500 mb-2 flex items-center justify-center">
+                            <i class="fas fa-robot text-white text-lg"></i>
+                        </div>
+                        <h3 class="font-medium text-sm text-center">Cyberpunk</h3>
+                        <span class="text-xs text-gray-400 mt-1">Futuristic</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Premium Section -->
+            <section class="bg-gradient-to-r from-purple-900/30 to-pink-900/30 rounded-2xl p-5 mb-6 border border-gray-800">
+                <div class="flex flex-col">
+                    <div class="mb-4">
+                        <h2 class="text-xl font-bold mb-2">Unlock Premium Features</h2>
+                        <p class="text-gray-300 text-sm">Get unlimited access to all filters, HD exports, and exclusive content.</p>
+                    </div>
+
+                    <div class="space-y-3">
+                        <div class="bg-gray-900 rounded-lg p-3 border border-gray-800">
+                            <div class="flex justify-between items-start mb-1">
+                                <h3 class="font-bold">Monthly</h3>
+                                <span class="text-xs bg-gray-800 px-2 py-1 rounded">Most Popular</span>
+                            </div>
+                            <div class="text-xl font-bold mb-1">$4.99<span class="text-xs font-normal text-gray-400">/month</span></div>
+                            <p class="text-xs text-gray-400 mb-3">Billed monthly</p>
+                            <button class="w-full bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-700 hover:to-pink-600 text-white py-2 rounded-lg text-sm font-medium">
+                                Get Started
+                            </button>
+                        </div>
+
+                        <div class="bg-gray-900 rounded-lg p-3 border border-gray-800">
+                            <h3 class="font-bold mb-1">Annual</h3>
+                            <div class="text-xl font-bold mb-1">$39.99<span class="text-xs font-normal text-gray-400">/year</span></div>
+                            <p class="text-xs text-gray-400 mb-3">Save 33%</p>
+                            <button class="w-full bg-gray-800 hover:bg-gray-700 text-white py-2 rounded-lg text-sm font-medium">
+                                Save More
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Gallery Section -->
+            <section class="mb-6">
+                <h2 class="text-xl font-bold mb-4">Your Creations</h2>
+                <div class="gallery-grid">
+                    <div class="image-preview aspect-square rounded-lg overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80"
+                             alt="Processed image"
+                             class="w-full h-full object-cover">
+                    </div>
+                    <div class="image-preview aspect-square rounded-lg overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80"
+                             alt="Processed image"
+                             class="w-full h-full object-cover">
+                    </div>
+                    <div class="image-preview aspect-square rounded-lg overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80"
+                             alt="Processed image"
+                             class="w-full h-full object-cover">
+                    </div>
+                    <div class="image-preview aspect-square rounded-lg overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80"
+                             alt="Processed image"
+                             class="w-full h-full object-cover">
+                    </div>
+                    <div class="image-preview aspect-square rounded-lg overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80"
+                             alt="Processed image"
+                             class="w-full h-full object-cover">
+                    </div>
+                    <div class="image-preview aspect-square rounded-lg overflow-hidden bg-gray-800 flex items-center justify-center">
+                        <i class="fas fa-plus text-gray-500 text-xl"></i>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Bottom Navigation -->
+        <nav class="bg-gray-900 border-t border-gray-800 fixed bottom-0 w-full max-w-[480px] py-2">
+            <div class="flex justify-around items-center">
+                <div class="nav-item active flex flex-col items-center text-xs">
+                    <i class="fas fa-home text-lg mb-1"></i>
+                    <span>Home</span>
+                </div>
+                <div class="nav-item flex flex-col items-center text-xs text-gray-400">
+                    <i class="fas fa-images text-lg mb-1"></i>
+                    <span>Gallery</span>
+                </div>
+                <div class="floating-btn bg-gradient-to-r from-purple-600 to-pink-500 w-14 h-14 rounded-full flex items-center justify-center">
+                    <i class="fas fa-camera text-white text-xl"></i>
+                </div>
+                <div class="nav-item flex flex-col items-center text-xs text-gray-400">
+                    <i class="fas fa-crown text-lg mb-1"></i>
+                    <span>Premium</span>
+                </div>
+                <div class="nav-item flex flex-col items-center text-xs text-gray-400">
+                    <i class="fas fa-user text-lg mb-1"></i>
+                    <span>Profile</span>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
